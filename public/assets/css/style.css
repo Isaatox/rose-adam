@@ -1,0 +1,522 @@
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    color: rgb(201, 36, 193);
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: rgba(201, 36, 193, 0.8);
+    outline: none;
+    text-decoration: none;
+}
+
+p {
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+section {
+    overflow: hidden;
+}
+
+/* Sections Header
+  --------------------------------*/
+.section-header .section-title {
+    font-size: 32px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.section-header .section-description {
+    text-align: center;
+    padding-bottom: 40px;
+    color: #999;
+}
+
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url('https://wallpapersmug.com/download/1920x1080/d53229/pink-roses-buds-flowers.jpg') top center;
+    background-size: cover;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        background-attachment: fixed;
+    }
+}
+
+#hero:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#hero .hero-container {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#hero h1 {
+    margin: 30px 0 10px 0;
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 56px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 45px;
+        line-height: 36px;
+    }
+}
+
+#hero h2 {
+    color: #eee;
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    #hero h2 {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+#hero .btn-get-started {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+#hero .btn-get-started:hover {
+    background: rgba(201, 36, 193, 0.466);
+    border: 2px solid rgba(201, 36, 193, 0.466);
+}
+
+#a_propos {
+    background: #fff;
+    padding: 80px 0;
+}
+
+#a_propos .about-container .background {
+    min-height: 300px;
+    background: url(../img/about-img.jpg) center top no-repeat;
+    margin-bottom: 10px;
+}
+
+#a_propos .about-container .content {
+    background: #fff;
+}
+
+#a_propos .about-container .title {
+    color: #333;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+@media (max-width: 768px) {
+    #a_propos .about-container .title {
+        padding-top: 15px;
+    }
+}
+
+#a_propos .about-container p {
+    line-height: 26px;
+}
+
+#a_propos .about-container p:last-child {
+    margin-bottom: 0;
+}
+
+#a_propos .about-container .icon-box {
+    background: #fff;
+    background-size: cover;
+    padding: 0 0 30px 0;
+}
+
+#a_propos .about-container .icon-box .icon {
+    float: left;
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 50%;
+    border: 2px solid rgba(201, 36, 193, 0.466);
+}
+
+#a_propos .about-container .icon-box .icon i {
+    color: rgba(201, 36, 193, 0.466);
+    font-size: 24px;
+    line-height: 0;
+}
+
+#a_propos .about-container .icon-box .title {
+    margin-left: 80px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+#a_propos .about-container .icon-box .title a {
+    color: #111;
+}
+
+#a_propos .about-container .icon-box .description {
+    margin-left: 80px;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+#chiffres {
+    background: #f7f7f7;
+    padding: 80px 0 60px 0;
+}
+
+#chiffres .counters span {
+    font-size: 48px;
+    display: block;
+    color: rgba(201, 36, 193, 0.466);
+}
+
+#chiffres .counters p {
+    padding: 0;
+    margin: 0 0 20px 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+}
+
+#p_commande {
+    background: #fff;
+    background-size: cover;
+    padding: 80px 0 60px 0;
+}
+
+#p_commande .box {
+    padding: 50px 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    height: 200px;
+    position: relative;
+    background: #fafafa;
+}
+
+#p_commande .icon {
+    position: absolute;
+    top: -36px;
+    left: calc(50% - 36px);
+    transition: 0.2s;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 72px;
+    height: 72px;
+    background: rgba(201, 36, 193, 0.925);
+}
+
+#p_commande .icon a {
+    display: inline-block;
+}
+
+#p_commande .icon i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 0;
+}
+
+#p_commande .box:hover .icon {
+    background: #fff;
+    border: 2px solid rgb(201, 36, 193);
+}
+
+#p_commande .box:hover .icon i {
+    color: rgb(201, 36, 193);
+}
+
+#p_commande .box:hover .icon a {
+    color: rgb(201, 36, 193);
+}
+
+#p_commande .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+#p_commande .title a {
+    color: #111;
+}
+
+#p_commande .description {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+#p_contact {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://c4.wallpaperflare.com/wallpaper/427/470/365/million-roses-bed-red-roses-wallpaper-preview.jpg') fixed center center;
+    background-size: cover;
+    padding: 80px 0;
+}
+
+@media (max-width: 1024px) {
+    #p_contact {
+        background-attachment: scroll;
+    }
+}
+
+#p_contact .b-title {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#p_contact .b-text {
+    color: #fff;
+}
+
+@media (min-width: 769px) {
+    #p_contact .b-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+
+#p_contact .b-btn {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+#p_contact .b-btn:hover {
+    background: rgba(201, 36, 193, 0.466);
+    border: 2px solid rgb(201, 36, 193);
+}
+
+#notre_equipe {
+    background: #fff;
+    padding: 80px 0 60px 0;
+  }
+  
+  #notre_equipe .membre {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #notre_equipe .membre .pic {
+    margin-bottom: 15px;
+    overflow: hidden;
+    height: 260px;
+  }
+  
+  #notre_equipe .membre .pic img {
+    max-width: 100%;
+  }
+  
+  #notre_equipe .membre h4 {
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 18px;
+  }
+  
+  #notre_equipe .membre span {
+    font-style: italic;
+    display: block;
+    font-size: 13px;
+  }
+  
+  #notre_equipe .membre .social {
+    margin-top: 15px;
+  }
+  
+  #notre_equipe .membre .social a {
+    color: #b3b3b3;
+  }
+  
+  #notre_equipe .membre .social a:hover {
+    color: rgb(201, 36, 193);
+  }
+  
+  #team .membre .social i {
+    font-size: 18px;
+    margin: 0 2px;
+  }
+
+  #nous_contacter {
+    background: #f7f7f7;
+    padding: 80px 0 40px 0;
+  }
+
+/* ====================== */
+
+
+@font-face {
+    font-family: Luna thorn;
+    src: url('../fonts/LunaThorn-GWKP.ttf') format('truetype');
+}
+
+.rose {
+    font-family: 'Luna thorn', sans-serif;
+    font-size: 5em;
+}
+
+.footer-07 {
+    background: #121212;
+}
+
+.footer-07 a {
+    color: rgba(201, 36, 193, 0.466);
+}
+
+.footer-07 p {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-07 .footer-heading {
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.footer-07 .footer-heading .logo {
+    color: #fff;
+}
+
+.footer-07 .menu {
+    margin-bottom: 30px;
+}
+
+.footer-07 .menu a {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-07 .ftco-footer-social li a {
+    background: transparent;
+    border: 1px solid rgba(201, 36, 193, 0.466);
+}
+
+.ftco-footer-social li {
+    list-style: none;
+    margin: 0 10px 0 0;
+    display: inline-block;
+}
+
+.ftco-footer-social li a {
+    height: 40px;
+    width: 40px;
+    display: block;
+    /* background: rgb(255, 255, 255); */
+    border-radius: 50%;
+    position: relative;
+}
+
+.ftco-footer-social li a span {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.ftco-footer-social li a span:hover {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.ftco-footer-social li a:hover {
+    color: #fff;
+
+}
+
+.error {
+    color: red;
+    font-weight: 400;
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.form-control.error {
+    border-color: red;
+    padding: .375rem .75rem;
+}
