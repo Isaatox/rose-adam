@@ -58,7 +58,7 @@ section {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url('https://wallpapersmug.com/download/1920x1080/d53229/pink-roses-buds-flowers.jpg') top center;
+    background: url('https://zupimages.net/up/22/37/z2b1.jpg') top center;
     background-size: cover;
     position: relative;
 }
@@ -71,7 +71,9 @@ section {
 
 #hero:before {
     content: "";
-    background: rgba(0, 0, 0, 0.6);
+    /* background: rgba(0, 0, 0, 0.6); */
+    background: rgba(201, 36, 193, 0.178);
+
     position: absolute;
     bottom: 0;
     top: 0;
@@ -97,7 +99,6 @@ section {
     font-size: 75px;
     font-weight: 700;
     line-height: 56px;
-    text-transform: uppercase;
     color: #fff;
 }
 
@@ -140,6 +141,34 @@ section {
 #hero .btn-get-started:hover {
     background: rgba(201, 36, 193, 0.466);
     border: 2px solid rgba(201, 36, 193, 0.466);
+}
+
+#hero .marquee-rtl {
+    max-width: 30em;
+    margin: 1em auto 2em;
+    overflow: hidden;
+    color: #fff;
+    font-size: 20px;
+}
+
+#hero .marquee-rtl> :first-child {
+    display: inline-block;
+    padding-right: 2em;
+    padding-left: 100%;
+    white-space: nowrap;
+    animation: defilement-rtl 20s infinite linear;
+}
+
+@keyframes defilement-rtl {
+    0% {
+        transform: translate3d(0, 0, 0);
+        /* position initiale à droite */
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        /* position finale à gauche */
+    }
 }
 
 #a_propos {
@@ -312,7 +341,7 @@ section {
 }
 
 #p_contact {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://c4.wallpaperflare.com/wallpaper/427/470/365/million-roses-bed-red-roses-wallpaper-preview.jpg') fixed center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://zupimages.net/up/22/34/91tj.jpg') fixed center center;
     background-size: cover;
     padding: 80px 0;
 }
@@ -364,67 +393,67 @@ section {
 #notre_equipe {
     background: #fff;
     padding: 80px 0 60px 0;
-  }
-  
-  #notre_equipe .membre {
+}
+
+#notre_equipe .membre {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  #notre_equipe .membre .pic {
+}
+
+#notre_equipe .membre .pic {
     margin-bottom: 15px;
     overflow: hidden;
     height: 260px;
-  }
-  
-  #notre_equipe .membre .pic img {
+}
+
+#notre_equipe .membre .pic img {
     max-width: 100%;
-  }
-  
-  #notre_equipe .membre h4 {
+}
+
+#notre_equipe .membre h4 {
     font-weight: 700;
     margin-bottom: 2px;
     font-size: 18px;
-  }
-  
-  #notre_equipe .membre span {
+}
+
+#notre_equipe .membre span {
     font-style: italic;
     display: block;
     font-size: 13px;
-  }
-  
-  #notre_equipe .membre .social {
+}
+
+#notre_equipe .membre .social {
     margin-top: 15px;
-  }
-  
-  #notre_equipe .membre .social a {
+}
+
+#notre_equipe .membre .social a {
     color: #b3b3b3;
-  }
-  
-  #notre_equipe .membre .social a:hover {
+}
+
+#notre_equipe .membre .social a:hover {
     color: rgb(201, 36, 193);
-  }
-  
-  #team .membre .social i {
+}
+
+#team .membre .social i {
     font-size: 18px;
     margin: 0 2px;
-  }
+}
 
-  #nous_contacter {
+#nous_contacter {
     background: #f7f7f7;
     padding: 80px 0 40px 0;
-  }
+}
 
 /* ====================== */
 
 
 @font-face {
-    font-family: Luna thorn;
-    src: url('../fonts/LunaThorn-GWKP.ttf') format('truetype');
+    font-family: SnellRoundhand;
+    src: url('../fonts/SnellBT-Regular.otf') format('opentype');
 }
 
 .rose {
-    font-family: 'Luna thorn', sans-serif;
+    font-family: 'SnellRoundhand'; 
     font-size: 5em;
 }
 

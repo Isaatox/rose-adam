@@ -37,25 +37,24 @@
                                     @endif
                                     <form action="{{ route('rose.post.step.1') }}" method="POST">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="name">Nom de la rose: </label>
-                                            <input type="text" name="name" class="form-control mb-2"
-                                                placeholder="Enter name" value="{{ session()->get('rose.name') }}">
+                                        <label>Nom du rosier: </label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" name="name" class="form-control"
+                                                placeholder="Entrer nom" value="{{ session()->get('rose.name') }}">
+                                            <span class="input-group-text">®</span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Description de la rose: </label>
-                                            <input type="text" name="description" class="form-control mb-2"
-                                                placeholder="Enter description" value="{{ session()->get('rose.description') }}">
+                                            <label for="name">Denomination Variétale: </label>
+                                            <input type="text" name="denomination" class="form-control mb-2"
+                                                placeholder="Entrer denomination"
+                                                value="{{ session()->get('rose.denomination') }}">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">Récompense de la rose: </label>
-                                            <input type="text" name="recompenses" class="form-control mb-2"
-                                                placeholder="Enter recompenses" value="{{ session()->get('rose.recompenses') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">prix de la rose: </label>
-                                            <input type="text" name="prix" class="form-control mb-2"
-                                                placeholder="Enter prix" value="{{ session()->get('rose.prix') }}">
+
+                                        <label>Prix du rosier: </label>
+                                        <div class="input-group mb-2">
+                                            <input type="number" name="prix" class="form-control" min="0"
+                                                placeholder="Entrer prix" value="{{ session()->get('rose.prix') }}">
+                                            <span class="input-group-text">€</span>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Continuer</button>
 
@@ -68,4 +67,5 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>

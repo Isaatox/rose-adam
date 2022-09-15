@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/bootstrap.css') }}" />
-
+    <script src="{{ url('assets/js/ckeditor.js') }}"></script>
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+    </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -38,113 +44,56 @@
                                     @endif
                                     <form action="{{ route('rose.post.step.2') }}" method="POST">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="name">Marque: </label>
-                                            <input type="text" name="marque" class="form-control mb-2"
-                                                placeholder="Enter marque" value="{{ session()->get('rose.marque') }}">
+                                        <div class="form-group mb-2">
+                                            <label for="name">Description de la rose: </label>
+                                            <textarea name="description" id="editor">{{ session()->get('rose.description') }}</textarea>
+
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Denomination: </label>
-                                            <input type="text" name="denomination" class="form-control mb-2"
-                                                placeholder="Enter denomination"
-                                                value="{{ session()->get('rose.denomination') }}">
+                                            <label for="name">Récompense de la rose: </label>
+                                            <input type="text" name="recompenses" class="form-control mb-2"
+                                                placeholder="Enter recompenses"
+                                                value="{{ session()->get('rose.recompenses') }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">edition: </label>
-                                            <input type="text" name="edition" class="form-control mb-2"
-                                                placeholder="Enter edition"
-                                                value="{{ session()->get('rose.edition') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">type: </label>
-                                            <input type="text" name="type" class="form-control mb-2"
-                                                placeholder="Enter type" value="{{ session()->get('rose.type') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">gamme: </label>
-                                            <input type="text" name="gamme" class="form-control mb-2"
-                                                placeholder="Enter gamme" value="{{ session()->get('rose.gamme') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">forme: </label>
-                                            <input type="text" name="forme" class="form-control mb-2"
-                                                placeholder="Enter forme" value="{{ session()->get('rose.forme') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">couleur: </label>
-                                            <input type="text" name="couleur" class="form-control mb-2"
-                                                placeholder="Enter couleur"
-                                                value="{{ session()->get('rose.couleur') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">largeur_diam: </label>
-                                            <input type="text" name="largeur_diam" class="form-control mb-2"
-                                                placeholder="Enter largeur diametre"
-                                                value="{{ session()->get('rose.largeur_diam') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">nb_petales: </label>
-                                            <input type="text" name="nb_petales" class="form-control mb-2"
-                                                placeholder="Enter nb_petales"
-                                                value="{{ session()->get('rose.nb_petales') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">parfum: </label>
-                                            {{-- <input type="text" name="parfum" class="form-control mb-2"
-                                                placeholder="Enter parfum" value="{{ session()->get('rose.parfum') }}"> --}}
-                                                <select name="parfum" id="" class="form-control mb-2">
-                                                    {{-- <option value="{{ session()->get('rose.parfum') }}" selected></option> --}}
-                                                    <option value="Faible">Faible</option>
-                                                    <option value="Moyen">Moyen</option>
-                                                    <option value="Fort">Fort</option>
-                                                </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">port: </label>
-                                            <input type="text" name="port" class="form-control mb-2"
-                                                placeholder="Enter port" value="{{ session()->get('rose.port') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">vegetation: </label>
-                                            <input type="text" name="vegetation" class="form-control mb-2"
-                                                placeholder="Enter vegetation"
-                                                value="{{ session()->get('rose.vegetation') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">hauteur_cm: </label>
-                                            <input type="text" name="hauteur_cm" class="form-control mb-2"
-                                                placeholder="Enter hauteur en cm"
-                                                value="{{ session()->get('rose.hauteur_cm') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">largeur_cm: </label>
-                                            <input type="text" name="largeur_cm" class="form-control mb-2"
-                                                placeholder="Enter largeur en cm"
-                                                value="{{ session()->get('rose.largeur_cm') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">feuillage: </label>
-                                            <input type="text" name="feuillage" class="form-control mb-2"
-                                                placeholder="Enter feuillage" value="{{ session()->get('rose.feuillage') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">maladies: </label>
-                                            <select name="maladies" id="" class="form-control mb-2">
+                                            <label for="categorie">Catégorie de la rose: </label>
+                                            <select name="categorie" id="" class="form-control mb-2">
                                                 {{-- <option value="{{ session()->get('rose.parfum') }}" selected></option> --}}
-                                                <option value="Faible">Faible</option>
-                                                <option value="Moyen">Moyen</option>
-                                                <option value="Fort">Fort</option>
+                                                <option value="Rosier Noble">Rosier Noble</option>
+                                                <option value="Rosier a fleurs groupées">Rosier à fleurs groupées</option>
+                                                <option value="Rosier Paysager">Rosier Paysager</option>
+                                                <option value="Rosier Grimpant">Rosier Grimpant</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">inflorescence: </label>
-                                            <input type="text" name="inflorescence" class="form-control mb-2"
-                                                placeholder="Enter inflorescence" value="{{ session()->get('rose.inflorescence') }}">
+                                        <div class="form-group mb-2">
+                                            <label for="parfume">Rosier parfumé : </label>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="parfume" id="parfume" value="Oui">
+                                                    <label class="form-check-label" for="parfume">Oui</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="parfume" id="parfume" value="Non">
+                                                    <label class="form-check-label" for="parfume">Non</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">floraison: </label>
-                                            <input type="text" name="floraison" class="form-control mb-2"
-                                                placeholder="Enter floraison" value="{{ session()->get('rose.floraison') }}">
+                                        <div class="form-group mb-3">
+                                            <label for="Tige">Rosier Tige : </label>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="tige" id="tige" value="Oui">
+                                                    <label class="form-check-label" for="tige">Oui</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="tige" id="tige" value="Non">
+                                                    <label class="form-check-label" for="tige">Non</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <a type="button" href="{{ route('rose.create') }}"
                                             class="btn btn-warning">Retourner Étape 1</a>
@@ -158,4 +107,12 @@
             </div>
         </div>
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>
+

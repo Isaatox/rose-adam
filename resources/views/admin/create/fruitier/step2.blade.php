@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/bootstrap.css') }}" />
-
+    <script src="{{ url('assets/js/ckeditor.js') }}"></script>
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+    </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -38,59 +44,29 @@
                                     @endif
                                     <form action="{{ route('fruitier.post.step.2') }}" method="POST">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="rendement">Rendement: </label>
-                                            <input type="text" name="rendement" class="form-control mb-2"
-                                                placeholder="Entrer rendement" value="{{ session()->get('fruitier.rendement') }}">
+                                        <div class="form-group mb-2">
+                                            <label for="name">Description du fruitier: </label>
+                                            <textarea name="description" id="editor">{{ session()->get('fruitier.description') }}</textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="sucre">Sucre : </label>
-                                            <input type="text" name="sucre" class="form-control mb-2"
-                                                placeholder="Entrer sucre"
-                                                value="{{ session()->get('fruitier.sucre') }}">
+                                            <label for="name">Récompense du fruitier: </label>
+                                            <input type="text" name="recompenses" class="form-control mb-2"
+                                                placeholder="Enter recompenses"
+                                                value="{{ session()->get('fruitier.recompenses') }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="acidite">Acidité : </label>
-                                            <input type="text" name="acidite" class="form-control mb-2"
-                                                placeholder="Entrer acidité"
-                                                value="{{ session()->get('fruitier.acidite') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">couleur: </label>
-                                            <input type="text" name="couleur" class="form-control mb-2"
-                                                placeholder="Entrer couleur"
-                                                value="{{ session()->get('fruitier.couleur') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">parfum: </label>
-                                            {{-- <input type="text" name="parfum" class="form-control mb-2"
-                                                placeholder="Enter parfum" value="{{ session()->get('rose.parfum') }}"> --}}
-                                                <select name="parfum" id="" class="form-control mb-2">
-                                                    {{-- <option value="{{ session()->get('rose.parfum') }}" selected></option> --}}
-                                                    <option value="Faible">Faible</option>
-                                                    <option value="Moyen">Moyen</option>
-                                                    <option value="Fort">Fort</option>
-                                                </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">hauteur_cm: </label>
-                                            <input type="text" name="hauteur_cm" class="form-control mb-2"
-                                                placeholder="Entrer hauteur en cm"
-                                                value="{{ session()->get('fruitier.hauteur_cm') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="largeur_cm">largeur_cm: </label>
-                                            <input type="text" name="largeur_cm" class="form-control mb-2"
-                                                placeholder="Entrer largeur en cm"
-                                                value="{{ session()->get('fruitier.largeur_cm') }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">maladies: </label>
-                                            <select name="maladies" id="" class="form-control mb-2">
+                                            <label for="categorie">Catégorie du fruitier: </label>
+                                            <select name="categorie" id="" class="form-control mb-2">
                                                 {{-- <option value="{{ session()->get('rose.parfum') }}" selected></option> --}}
-                                                <option value="Faible">Faible</option>
-                                                <option value="Moyen">Moyen</option>
-                                                <option value="Fort">Fort</option>
+                                                <option value="Pommier">Pommier</option>
+                                                <option value="Pommier à cidre">Pommier à cidre</option>
+                                                <option value="Poirier">Poirier</option>
+                                                <option value="Pêcher">Pêcher</option>
+                                                <option value="Cerisier">Cerisier</option>
+                                                <option value="Prunier">Prunier</option>
+                                                <option value="Abricotier">Abricotier</option>
+                                                <option value="Amandier">Amandier</option>
+
                                             </select>
                                         </div>
                                         <a type="button" href="{{ route('fruitier.create') }}"
@@ -105,4 +81,11 @@
             </div>
         </div>
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>

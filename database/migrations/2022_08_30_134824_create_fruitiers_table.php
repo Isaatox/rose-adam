@@ -17,17 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('variete');
             $table->text('description');
-            $table->text('recompenses');
             $table->string('fruitierimg');
+            $table->text('recompenses');
+            $table->string('categorie');
             $table->string('prix');
-            $table->string('rendement');
-            $table->string('sucre');
-            $table->string('acidite');
-            $table->string('parfum');
-            $table->string('hauteur_cm');
-            $table->string('largeur_cm');
-            $table->string('maladies');
-            $table->string('couleur');
             $table->timestamps();
         });
     }

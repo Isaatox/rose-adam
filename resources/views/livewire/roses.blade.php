@@ -4,7 +4,7 @@
 
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/espece.css') }}" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/mdb.css') }}" />
     <style type="text/css">
         .searchFilter {
             margin-bottom: 20px;
@@ -215,17 +215,15 @@
         var nav = document.querySelector('nav');
         var navL = document.querySelector('#test');
         var navL2 = document.querySelector('#test2');
-        var navL3 = document.querySelector('#test3');
         var navL4 = document.querySelector('#test4');
         var navL5 = document.querySelector('#test5');
         var navL6 = document.querySelector('#test6');
         var navL7 = document.querySelector('#test7');
 
-
+        
         nav.classList.add('bg-dark', 'shadow');
         navL.classList.add('text-light');
         navL2.classList.add('text-light');
-        navL3.classList.add('text-light');
         navL4.classList.add('text-light');
         navL5.classList.add('text-light');
         navL6.classList.add('text-light');

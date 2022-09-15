@@ -26,6 +26,9 @@
                     <x-nav-link :href="route('mail')" :active="request()->routeIs('mail')">
                         {{ __('Mail') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('text')" :active="request()->routeIs('text')">
+                        {{ __('Modifier Textes / Annonce') }}
+                    </x-nav-link>
                 </div>
 
             </div>
@@ -86,6 +89,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('mail')" :active="request()->routeIs('mail')">
                 {{ __('Mail') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('text')" :active="request()->routeIs('text')">
+                {{ __('Modifier Textes / Annonce') }}
             </x-responsive-nav-link>
         </div>
         

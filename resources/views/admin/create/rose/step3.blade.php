@@ -21,44 +21,42 @@
                                         <div class="col-md-2">
                                             <a href="{{ route('rose.create.step.2') }}"
                                                 class="btn btn-md btn-success float-right"><i
-                                                class="fas fa-arrow-left"></i></a>
+                                                    class="fas fa-arrow-left"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <h3>Étape 3</h3>
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                        <hr>
-                                        @if (isset($rose->roseimg))
-                                            <img alt="Rose Image"
-                                                src="/storage/roseImg/{{ $rose->roseimg }}" />
-                                        @endif
-                                        <form action="{{ route('rose.post.step.3') }}" method="post"
-                                            enctype="multipart/form-data">
-                                            {{ csrf_field() }}
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                    <hr>
+                                    @if (isset($rose->roseimg))
+                                        <img alt="Rose Image" src="/storage/roseimg/{{ $rose->roseimg }}" />
+                                    @endif
+                                    <form action="{{ route('rose.post.step.3') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        {{ csrf_field() }}
 
-                                            <div class="form-group">
-                                                <label for="name">Télécharger Image: </label>
-                                                    <input type="file"
-                                                        {{ !empty($rose->roseimg) ? 'disabled' : '' }}
-                                                        class="form-control-file" name="roseimg" id="roseimg"
-                                                        aria-describedby="fileHelp">
-                                                    <small id="fileHelp" class="form-text text-muted">Please upload a
-                                                        valid image file. Size of image should not be more than
-                                                        2MB.</small>
-                                            </div>
-                                            <a type="button" href="{{ route('rose.create.step.2') }}"
-                                                class="btn btn-warning">Retourner Étape 2</a>
-                                                <button type="submit" class="btn btn-primary">Voir les détails</button>
-                                        </form><br/>
+                                        <div class="form-group">
+                                            <label for="name">Télécharger Image: </label>
+                                            <input type="file" {{ !empty($rose->roseimg) ? 'disabled' : '' }}
+                                                class="form-control-file" name="roseimg" id="roseimg"
+                                                aria-describedby="fileHelp">
+                                            <small id="fileHelp" class="form-text text-muted">Merci de mettre une image
+                                                avec une bonne extension <strong>(jpeg,png,jpg,gif,svg)</strong>. La
+                                                taille de l'image ne doit passer 2mb.</small>
+                                        </div>
+                                        <a type="button" href="{{ route('rose.create.step.2') }}"
+                                            class="btn btn-warning">Retourner Étape 2</a>
+                                        <button type="submit" class="btn btn-primary">Voir les détails</button>
+                                    </form><br />
                                 </div>
                             </div>
                         </div>

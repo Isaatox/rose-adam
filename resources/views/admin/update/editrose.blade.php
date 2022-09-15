@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/bootstrap.css') }}" />
-
+    <script src="{{ url('assets/js/ckeditor.js') }}"></script>
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+    </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -24,144 +30,98 @@
                             @csrf
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>Name:</td>
-                                    <td><strong><input type="text" name="name" id=""
-                                                value="{{ $rose->name }}" class="form-control mb-2"></strong></td>
+                                    <td>Nom:</td>
+                                    <td><strong>
+                                            <div class="input-group"><input type="text" name="name"
+                                                    class="form-control" placeholder="Entrer nom"
+                                                    value="{{ $rose->name }}">
+                                                <span class="input-group-text">®</span>
+                                            </div>
+                                        </strong></td>
+                                </tr>
+                                <td>denomination:</td>
+                                <td><strong><input type="text" name="denomination" id=""
+                                            class="form-control mb-2" value="{{ $rose->denomination }}"></strong>
+                                </td>
                                 </tr>
                                 <tr>
                                     <td>Description:</td>
+                                    <td>
+                                        <textarea name="description" id="editor">{{ $rose->description }}</textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Prix du rosier :</td>
                                     <td><strong>
-                                            <textarea name="description" id="" cols="100" rows="5" class="form-control mb-2">{{ $rose->description }}</textarea>
+                                            <div class="input-group"><input type="number" name="prix"
+                                                    class="form-control" min="0" placeholder="Entrer prix"
+                                                    value="{{ $rose->prix }}">
+                                                <span class="input-group-text">€</span>
+                                            </div>
                                         </strong></td>
                                 </tr>
                                 <tr>
-                                    <td>Prix:</td>
-                                    <td><strong><input type="text" name="prix" id=""
-                                                class="form-control mb-2" value="{{ $rose->prix }}"> €</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Recompense:</td>
+                                    <td>Recompense(s) :</td>
                                     <td><strong><input type="text" name="recompenses" id=""
                                                 class="form-control mb-2" value="{{ $rose->recompenses }}"></strong>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>marque:</td>
-                                    <td><strong><input type="text" name="marque" id=""
-                                                class="form-control mb-2" value="{{ $rose->marque }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>denomination:</td>
-                                    <td><strong><input type="text" name="denomination" id=""
-                                                class="form-control mb-2" value="{{ $rose->denomination }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>edition:</td>
-                                    <td><strong><input type="text" name="edition" id=""
-                                                class="form-control mb-2" value="{{ $rose->edition }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>type:</td>
-                                    <td><strong><input type="text" name="type" id=""
-                                                class="form-control mb-2" value="{{ $rose->type }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>gamme:</td>
-                                    <td><strong><input type="text" name="gamme" id=""
-                                                class="form-control mb-2" value="{{ $rose->gamme }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>forme:</td>
-                                    <td><strong><input type="text" name="forme" id=""
-                                                class="form-control mb-2" value="{{ $rose->forme }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>couleur:</td>
-                                    <td><strong><input type="text" name="couleur" id=""
-                                                class="form-control mb-2" value="{{ $rose->couleur }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>largeur_diam:</td>
-                                    <td><strong><input type="text" name="largeur_diam" id=""
-                                                class="form-control mb-2" value="{{ $rose->largeur_diam }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>nb_petales:</td>
-                                    <td><strong><input type="text" name="nb_petales" id=""
-                                                class="form-control mb-2" value="{{ $rose->nb_petales }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>parfum:</td>
+                                    <td>Catégorie:</td>
                                     <td><strong>
-                                            <select name="parfum" id="" class="form-control mb-2">
-                                                <option value="Faible"
-                                                    {{ $rose->parfum == 'Faible' ? 'selected' : '' }}>
-                                                    Faible</option>
-                                                <option value="Moyen"
-                                                    {{ $rose->parfum == 'Moyen' ? 'selected' : '' }}>
-                                                    Moyen</option>
-                                                <option value="Fort" {{ $rose->parfum == 'Fort' ? 'selected' : '' }}>
-                                                    Fort</option>
+                                            <select name="categorie" id="" class="form-control mb-2">
+                                                <option value="Rosier Noble"
+                                                    {{ $rose->categorie == 'Rosier Noble' ? 'selected' : '' }}>
+                                                    Rosier Noble</option>
+                                                <option value="Rosier a fleurs groupées"
+                                                    {{ $rose->categorie == 'Rosier a fleurs groupées' ? 'selected' : '' }}>
+                                                    Rosier a fleurs groupées</option>
+                                                <option value="Rosier Paysager"
+                                                    {{ $rose->categorie == 'Rosier Paysager' ? 'selected' : '' }}>
+                                                    Rosier Paysager</option>
+                                                <option value="Rosier Grimpant"
+                                                    {{ $rose->categorie == 'Rosier Grimpant' ? 'selected' : '' }}>
+                                                    Rosier Grimpant</option>
                                             </select>
                                         </strong></td>
                                 </tr>
                                 <tr>
-                                    <td>port:</td>
-                                    <td><strong><input type="text" name="port" id=""
-                                                class="form-control mb-2" value="{{ $rose->port }}"></strong></td>
+                                    <td>Rosier parfumé:</td>
+                                    <td><strong>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="parfume"
+                                                        id="parfume" value="Oui"
+                                                        {{ $rose->parfume == 'Oui' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="parfume">Oui</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="parfume"
+                                                        id="parfume" value="Non"
+                                                        {{ $rose->parfume == 'Non' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="parfume">Non</label>
+                                                </div>
+                                            </div>
+                                        </strong></td>
                                 </tr>
                                 <tr>
-                                    <td>vegetation:</td>
-                                    <td><strong><input type="text" name="vegetation" id=""
-                                                class="form-control mb-2" value="{{ $rose->vegetation }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>hauteur_cm:</td>
-                                    <td><strong><input type="text" name="hauteur_cm" id=""
-                                                class="form-control mb-2" value="{{ $rose->hauteur_cm }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>largeur_cm:</td>
-                                    <td><strong><input type="text" name="largeur_cm" id=""
-                                                class="form-control mb-2" value="{{ $rose->largeur_cm }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>feuillage:</td>
-                                    <td><strong><input type="text" name="feuillage" id=""
-                                                class="form-control mb-2" value="{{ $rose->feuillage }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>maladies:</td>
-                                    <td><strong><select name="maladies" id="" class="form-control mb-2">
-                                                <option value="Faible"
-                                                    {{ $rose->maladies == 'Faible' ? 'selected' : '' }}>
-                                                    Faible</option>
-                                                <option value="Moyen"
-                                                    {{ $rose->maladies == 'Moyen' ? 'selected' : '' }}>
-                                                    Moyen</option>
-                                                <option value="Fort"
-                                                    {{ $rose->maladies == 'Fort' ? 'selected' : '' }}>
-                                                    Fort</option>
-                                            </select></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>inflorescence:</td>
-                                    <td><strong><input type="text" name="inflorescence" id=""
-                                                class="form-control mb-2"
-                                                value="{{ $rose->inflorescence }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>floraison:</td>
-                                    <td><strong><input type="text" name="floraison" id=""
-                                                class="form-control mb-2" value="{{ $rose->floraison }}"></strong>
-                                    </td>
+                                    <td>Rosier Tige:</td>
+                                    <td><strong>
+                                            <div class="form-control">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="tige"
+                                                        id="tige" value="Oui"
+                                                        {{ $rose->tige == 'Oui' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="tige">Oui</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="tige"
+                                                        id="tige" value="Non"
+                                                        {{ $rose->tige == 'Non' ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="tige">Non</label>
+                                                </div>
+                                            </div>
+                                        </strong></td>
                                 </tr>
                             </table>
 
@@ -173,5 +133,11 @@
         </div>
     </div>
     <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
-
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>

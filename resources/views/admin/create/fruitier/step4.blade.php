@@ -38,41 +38,14 @@
                                                 <td><strong>{{ $fruitier->recompenses }}</strong></td>
                                             </tr>
                                             <tr>
-                                                <td>couleur:</td>
-                                                <td><strong>{{ $fruitier->couleur }}</strong></td>
+                                                <td>Catégorie :</td>
+                                                <td><strong>{{ $fruitier->categorie }}</strong></td>
                                             </tr>
-                                            <tr>
-                                                <td>Rendement :</td>
-                                                <td><strong>{{ $fruitier->rendement }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sucre :</td>
-                                                <td><strong>{{ $fruitier->sucre }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Acidité :</td>
-                                                <td><strong>{{ $fruitier->acidite }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>parfum:</td>
-                                                <td><strong>{{ $fruitier->parfum }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>hauteur_cm:</td>
-                                                <td><strong>{{ $fruitier->hauteur_cm }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>largeur_cm:</td>
-                                                <td><strong>{{ $fruitier->largeur_cm }}</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>maladies:</td>
-                                                <td><strong>{{ $fruitier->maladies }}</strong></td>
-                                            </tr>
+
                                             <tr>
                                                 <td>Image:</td>
                                                 <td><strong><img alt="Fruitier Image"
-                                                            src="/storage/fruitierImg/{{ $fruitier->fruitierimg }}" /></strong>
+                                                            src="/storage/fruitierimg/{{ $fruitier->fruitierimg }}" /></strong>
                                                 </td>
                                             </tr>
                                         </table>

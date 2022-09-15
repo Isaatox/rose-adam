@@ -5,7 +5,13 @@
         </h2>
     </x-slot>
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/bootstrap.css') }}" />
-
+    <script src="{{ url('assets/js/ckeditor.js') }}"></script>
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+    </style>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -25,19 +31,29 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Varieté :</td>
-                                    <td><strong><input type="text" name="variete" id=""
-                                                value="{{ $fruitier->variete }}" class="form-control mb-2"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Description:</td>
                                     <td><strong>
-                                            <textarea name="description" id="" cols="100" rows="5" class="form-control mb-2">{{ $fruitier->description }}</textarea>
-                                        </strong></td>
+                                            <div class="input-group">
+                                                <input type="text" name="variete" class="form-control"
+                                                    placeholder="Entrer nom" value="{{ $fruitier->variete }}">
+                                                <span class="input-group-text">®</span>
+                                            </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Prix :</td>
-                                    <td><strong><input type="text" name="prix" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->prix }}"> €</strong></td>
+                                    <td><strong>
+                                            <div class="input-group mb-2">
+                                                <input type="number" name="prix" class="form-control" min="0"
+                                                    placeholder="Enter prix" value="{{ $fruitier->prix }}">
+                                                <span class="input-group-text">€</span>
+                                            </div>
+                                        </strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Description:</td>
+                                    <td>
+                                            <textarea name="description" id="editor">{{ $fruitier->description }}</textarea>
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td>Recompense:</td>
@@ -46,66 +62,35 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Rendement :</td>
-                                    <td><strong><input type="text" name="rendement" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->rendement }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Sucre :</td>
-                                    <td><strong><input type="text" name="sucre" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->sucre }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Acidité :</td>
-                                    <td><strong><input type="text" name="acidite" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->acidite }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>couleur:</td>
-                                    <td><strong><input type="text" name="couleur" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->couleur }}"></strong></td>
-                                </tr>
-                                <tr>
-                                    <td>parfum:</td>
+                                    <td>Catégorie :</td>
                                     <td><strong>
-                                            <select name="parfum" id="" class="form-control mb-2">
-                                                <option value="Faible"
-                                                    {{ $fruitier->parfum == 'Faible' ? 'selected' : '' }}>
-                                                    Faible</option>
-                                                <option value="Moyen"
-                                                    {{ $fruitier->parfum == 'Moyen' ? 'selected' : '' }}>
-                                                    Moyen</option>
-                                                <option value="Fort" {{ $fruitier->parfum == 'Fort' ? 'selected' : '' }}>
-                                                    Fort</option>
+                                            <select name="categorie" id="" class="form-control mb-2">
+                                                <option value="Pommier"
+                                                    {{ $fruitier->categorie == 'Pommier' ? 'selected' : '' }}>
+                                                    Pommier</option>
+                                                <option value="Pommier à cidre"
+                                                    {{ $fruitier->categorie == 'Pommier à cidre' ? 'selected' : '' }}>
+                                                    Pommier à cidre</option>
+                                                <option value="Poirier"
+                                                    {{ $fruitier->categorie == 'Poirier' ? 'selected' : '' }}>
+                                                    Poirier</option>
+                                                <option value="Pêcher"
+                                                    {{ $fruitier->categorie == 'Pêcher' ? 'selected' : '' }}>
+                                                    Pêcher</option>
+                                                <option value="Cerisier"
+                                                    {{ $fruitier->categorie == 'Cerisier' ? 'selected' : '' }}>
+                                                    Cerisier</option>
+                                                <option value="Prunier"
+                                                    {{ $fruitier->categorie == 'Prunier' ? 'selected' : '' }}>
+                                                    Prunier</option>
+                                                <option value="Abricotier"
+                                                    {{ $fruitier->categorie == 'Abricotier' ? 'selected' : '' }}>
+                                                    Abricotier</option>
+                                                <option value="Amandier"
+                                                    {{ $fruitier->categorie == 'Amandier' ? 'selected' : '' }}>
+                                                    Amandier</option>
                                             </select>
                                         </strong></td>
-                                </tr>
-                                <tr>
-                                    <td>hauteur_cm:</td>
-                                    <td><strong><input type="text" name="hauteur_cm" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->hauteur_cm }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>largeur_cm:</td>
-                                    <td><strong><input type="text" name="largeur_cm" id=""
-                                                class="form-control mb-2" value="{{ $fruitier->largeur_cm }}"></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>maladies:</td>
-                                    <td><strong><select name="maladies" id="" class="form-control mb-2">
-                                                <option value="Faible"
-                                                    {{ $fruitier->maladies == 'Faible' ? 'selected' : '' }}>
-                                                    Faible</option>
-                                                <option value="Moyen"
-                                                    {{ $fruitier->maladies == 'Moyen' ? 'selected' : '' }}>
-                                                    Moyen</option>
-                                                <option value="Fort"
-                                                    {{ $fruitier->maladies == 'Fort' ? 'selected' : '' }}>
-                                                    Fort</option>
-                                            </select></strong></td>
                                 </tr>
                             </table>
 
@@ -117,5 +102,11 @@
         </div>
     </div>
     <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
-
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>

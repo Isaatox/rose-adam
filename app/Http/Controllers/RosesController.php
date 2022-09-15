@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Roses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Storage;
 
 class RosesController extends Controller
 {
@@ -42,9 +43,8 @@ class RosesController extends Controller
     public function PostcreateStep1(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'recompenses' => 'required',
+            'name' => 'required',            
+            'denomination' => 'required',
             'prix' => 'required',
         ]);
         if (empty($request->session()->get('rose'))) {
@@ -79,24 +79,11 @@ class RosesController extends Controller
     public function PostcreateStep2(Request $request)
     {
         $validatedData = $request->validate([
-            'marque' => 'required',
-            'denomination' => 'required',
-            'edition' => 'required',
-            'type' => 'required',
-            'gamme' => 'required',
-            'forme' => 'required',
-            'couleur' => 'required',
-            'largeur_diam' => 'required',
-            'nb_petales' => 'required',
-            'parfum' => 'required',
-            'port' => 'required',
-            'vegetation' => 'required',
-            'hauteur_cm' => 'required',
-            'largeur_cm' => 'required',
-            'feuillage' => 'required',
-            'maladies' => 'required',
-            'inflorescence' => 'required',
-            'floraison' => 'required',
+            'description' => 'required',
+            'recompenses' => 'required',
+            'categorie' => 'required',
+            'parfume' => 'required',
+            'tige' => 'required',
         ]);
         if (empty($request->session()->get('rose'))) {
             $rose = new \App\Models\Roses();
@@ -129,7 +116,6 @@ class RosesController extends Controller
     public function PostcreateStep3(Request $request)
     {
         $roses = $request->session()->get('rose');
-
         if (!isset($rose->roseimg)) {
             $request->validate([
                 'roseimg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -140,6 +126,7 @@ class RosesController extends Controller
             $rose->roseimg = $fileName;
             $request->session()->put('rose', $rose);
         }
+
         return view('admin.create.rose.step4', compact('rose'));
     }
 
@@ -152,9 +139,11 @@ class RosesController extends Controller
     {
         $rose = $request->session()->get('rose');
 
+        Storage::disk('public')->delete('roseimg/'.$rose->roseimg);
+
         $rose->roseimg = null;
 
-        return view('admin.create.rose.step3', compact('rose'));
+        return redirect('admin/roses/new-3');
     }
 
     /**
@@ -185,53 +174,22 @@ class RosesController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'denomination' => 'required',
             'description' => 'required',
             'recompenses' => 'required',
             'prix' => 'required',
-            'marque' => 'required',
-            'denomination' => 'required',
-            'edition' => 'required',
-            'type' => 'required',
-            'gamme' => 'required',
-            'forme' => 'required',
-            'couleur' => 'required',
-            'largeur_diam' => 'required',
-            'nb_petales' => 'required',
-            'parfum' => 'required',
-            'port' => 'required',
-            'vegetation' => 'required',
-            'hauteur_cm' => 'required',
-            'largeur_cm' => 'required',
-            'feuillage' => 'required',
-            'maladies' => 'required',
-            'inflorescence' => 'required',
-            'floraison' => 'required',
         ]);
 
         $id = request("id");
         $rose = Roses::find($id);
         $rose->name = $request->name;
+        $rose->denomination = $request->denomination;
         $rose->description = $request->description;
         $rose->recompenses = $request->recompenses;
         $rose->prix = $request->prix;
-        $rose->marque = $request->marque;
-        $rose->denomination = $request->denomination;
-        $rose->edition = $request->edition;
-        $rose->type = $request->type;
-        $rose->gamme = $request->gamme;
-        $rose->forme = $request->forme;
-        $rose->couleur = $request->couleur;
-        $rose->largeur_diam = $request->largeur_diam;
-        $rose->nb_petales = $request->nb_petales;
-        $rose->parfum = $request->parfum;
-        $rose->port = $request->port;
-        $rose->vegetation = $request->vegetation;
-        $rose->hauteur_cm = $request->hauteur_cm;
-        $rose->largeur_cm = $request->largeur_cm;
-        $rose->feuillage = $request->feuillage;
-        $rose->maladies = $request->maladies;
-        $rose->inflorescence = $request->inflorescence;
-        $rose->floraison = $request->floraison;
+        $rose->categorie = $request->categorie;
+        $rose->parfume = $request->parfume;
+        $rose->tige = $request->tige;
         $rose->save();
         // return Redirect::to('admin/question');
         return Redirect::to('admin/roses')->with('success', 'Rose ' . $rose->name . ' modifiée');
@@ -240,6 +198,9 @@ class RosesController extends Controller
     public function delete()
     {
         $id = request("id");
+
+        $rose = Roses::find($id);
+        Storage::disk('public')->delete('roseimg/'.$rose->roseimg);
 
         Roses::where('id', $id)
             ->delete();

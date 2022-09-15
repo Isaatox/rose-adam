@@ -1,7 +1,17 @@
 <div class="container" style="margin-bottom: 5rem !important; margin-top: 6rem !important">
     <input type="text" class="form-control" style="border-radius: 1rem !important"
         placeholder="Rechercher une variété de Fruitiers ..." wire:model="searchFruitiers" />
-    <div class="mb-5"></div>
+    <div class="mb-5 mt-5">
+        <a href="/fruitier/abricotiers" class="btn btn-primary mt-2">Nos Abricotiers</a>
+        <a href="/fruitier/amandiers" class="btn btn-primary mt-2">Nos Amandiers</a>
+        <a href="/fruitier/cerisiers" class="btn btn-primary mt-2">Nos Cerisiers</a>
+        <a href="/fruitier/pechers" class="btn btn-primary mt-2">Nos Pêchers</a>
+        <a href="/fruitier/poiriers" class="btn btn-primary mt-2">Nos Poiriers</a>
+        <a href="/fruitier/pruniers" class="btn btn-primary mt-2">Nos Pruniers</a>
+        <a href="/fruitier/pommiers" class="btn btn-success mt-2">Nos Pommiers</a>
+        <a href="/fruitier/pommiers-à-cidre" class="btn btn-success mt-2">Nos Pommiers à cidre</a>
+        <a href="/fruitier" class="btn btn-info mt-2">Toutes nos variétées</a>
+    </div>
     <h2>Nos Fruitiers</h2>
     {{ $fruitiers->links('custom-pagination-links-view') }}
     <hr>
@@ -10,15 +20,14 @@
         @foreach ($fruitiers as $fruitier)
             <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
                 <div class="card">
-                    <img src="/storage/fruitierImg/{{ $fruitier->fruitierimg }}" width="312" height="312"
-                        class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/fruitierimg/' . $fruitier->fruitierimg) }}" width="312"
+                        height="312" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h3 class="card-title">{{ $fruitier->variete }}</h3>
-                        <p class="card-text">{{ $fruitier->description }}</p>
-                        <p class="text-muted">{{ $fruitier->prix }} €</p>
+                        <h3 class="card-title">{{ $fruitier->variete }} ®</h3>
+                        <p class="text-muted"><strong>{{ $fruitier->prix }} €</strong></p>
 
                         <button data-bs-toggle="modal" data-bs-target="#Fruitier{{ $fruitier->id }}"
-                            class="btn btn-primary">En savoir
+                            class="btn btn-secondary">En savoir
                             plus</button>
                     </div>
                 </div>
@@ -29,7 +38,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ $fruitier->variete }}</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{{ $fruitier->variete }} ®</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -37,35 +46,23 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="/storage/fruitierImg/{{ $fruitier->fruitierimg }}"
+                                        <img src="/storage/fruitierimg/{{ $fruitier->fruitierimg }}"
                                             class="card-img-top" alt="...">
                                     </div>
                                     <div class="col-md-5">
                                         <ul>
-                                            <li><strong>Rendement :</strong> {{ $fruitier->rendement }}</li>
-                                            <li><strong>Sucre :</strong>{{ $fruitier->sucre }}</li>
-                                            <li><strong>Acidité :</strong>{{ $fruitier->acidite }}</li>
-                                            <li><strong>Couleur :</strong>{{ $fruitier->couleur }}</li>
-                                            <li><strong>Parfum :</strong>{{ $fruitier->parfum }}</li>
-                                            <li><strong>Hauteur (cm.) : </strong>{{ $fruitier->hauteur_cm }}</li>
-                                            <li><strong>Largeur (cm.) : </strong>{{ $fruitier->largeur_cm }}</li>
-                                            <li><strong>Résistance aux Maladies : </strong>{{ $fruitier->maladies }}
-                                            </li>
+                                            <li><strong>Nom :</strong> {{ $fruitier->variete }} ®</li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <h4 style="color: #e509ec">Description :</h4>
-                                        <p>{{ $fruitier->description }}</p>
+                                        <p>{!! html_entity_decode($fruitier->description) !!}</p>
                                         <div class="row">
                                             <div class="col-8 col-sm-8">
-                                                <h4 style="color: #e509ec">Récompenses :</h4>
-                                                <p>{{ $fruitier->recompenses }}</p>
-                                            </div>
-                                            <div class="col-8 col-sm-8">
                                                 <h4 style="color: #e509ec">Prix :</h4>
-                                                <p>{{ $fruitier->prix }} €</p>
+                                                <p><strong>{{ $fruitier->prix }} €</strong></p>
                                             </div>
                                         </div>
                                     </div>

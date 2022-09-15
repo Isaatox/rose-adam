@@ -48,7 +48,7 @@
                             @foreach ($fruitiers as $fruitier)
                                 <tr>
                                     <td>{{ $fruitier->variete }}</td>
-                                    <td>{{ $fruitier->description }}</td>
+                                    <td>{!! html_entity_decode($fruitier->description) !!}</td>
                                     <td>{{ $fruitier->prix }} €</td>
                                     <td>{{ $fruitier->created_at->format('d/m/Y à H:i') }}</td>
                                     <td>

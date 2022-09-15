@@ -10,6 +10,6 @@ class Roses extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public $fillable = ['name', 'description', 'marque', 'denomination', 'edition', 'type', 'gamme', 'forme', 'couleur', 'largeur_diam', 'nb_petales', 'parfum', 'port', 'vegetation', 'hauteur_cm', 'largeur_cm', 'feuillage', 'maladies', 'inflorescence', 'floraison', 'recompenses', 'roseimg', 'prix'];
+    public $fillable = ['name', 'description', 'denomination', 'categorie', 'recompenses', 'parfume', 'tige', 'roseimg', 'prix'];
 
 }

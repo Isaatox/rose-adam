@@ -47,7 +47,7 @@
                             @foreach ($roses as $rose)
                                 <tr>
                                     <td>{{ $rose->name }}</td>
-                                    <td>{{ $rose->description }}</td>
+                                    <td>{!! html_entity_decode($rose->description) !!}</td>
                                     <td>{{ $rose->prix }} €</td>
                                     <td>{{ $rose->created_at->format('d/m/Y à H:i') }}</td>
                                     <td>

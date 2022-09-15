@@ -3,7 +3,8 @@
 @section('pageTitle', 'Les Roses Adam')
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <style type="text/css">
         .map {
             width: 100%;
@@ -32,9 +33,15 @@
 
     <section id="hero">
         <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-            <h1 class="rose">LES ROSES ADAM</h1>
-            <h2>Rossiériste depuis 1995</h2>
+            <h1 class="rose">Les Roses Adam</h1>
             <a href="#a_propos" class="btn-get-started"><i class="fas fa-chevron-circle-down fa-2x"></i></a>
+            <div class="marquee-rtl">
+                @foreach ($annonce as $ann)
+                    @if ($ann->active == 'Oui')
+                        <p>{{ $ann->annonce }}</p>
+                    @endif
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -46,33 +53,29 @@
 
                     <div class="col-lg-6 content order-lg-1 order-2">
                         <h2 class="title">A propos de nous</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+                        @foreach ($textpropos as $text)
+                            <p>
+                                {{ $text->propos_desc }}
+                            </p>
 
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="fas fa-calendar"></i></div>
-                            <h4 class="title">Depuis quand</h4>
-                            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-                                tempore, cum soluta nobis est eligendi</p>
-                        </div>
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                                <div class="icon"><i class="fas fa-calendar"></i></div>
+                                <h4 class="title">Depuis quand</h4>
+                                <p class="description">{{ $text->propos_quand }}</p>
+                            </div>
 
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon"><i class="fas fa-briefcase"></i></div>
-                            <h4 class="title">Pourquoi nous faisons ce métier</h4>
-                            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit anim id est laborum</p>
-                        </div>
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                                <h4 class="title">Pourquoi nous faisons ce métier</h4>
+                                <p class="description">{{ $text->propos_pourquoi }}</p>
+                            </div>
 
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon"><i class="fas fa-seedling"></i></div>
-                            <h4 class="title">Ce que l'on fait</h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                ex ea commodo consequat tarad limino ata</p>
-                        </div>
-
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                                <div class="icon"><i class="fas fa-seedling"></i></div>
+                                <h4 class="title">Ce que l'on fait</h4>
+                                <p class="description">{{ $text->propos_fait }}</p>
+                            </div>
+                        @endforeach
                     </div>
 
                     {{-- <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div> --}}
@@ -88,13 +91,13 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://www.zupimages.net/up/22/34/h4tm.jpg" class="d-block w-100" alt="...">
+                                <img src="https://www.zupimages.net/up/22/37/5xdj.jpg" class="d-block w-100"  alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://www.zupimages.net/up/22/34/w0t2.jpg" class="d-block w-100" alt="...">
+                                <img src="https://www.zupimages.net/up/22/34/91tj.jpg" class="d-block w-100"  alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="https://www.zupimages.net/up/22/34/xhw3.jpg" class="d-block w-100" alt="...">
+                                <img src="https://www.zupimages.net/up/22/37/g0ip.jpg" class="d-block w-100"  alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -123,7 +126,7 @@
 
 
                     <div class="col-sm text-center">
-                        <span class="counters">35</span>
+                        <span class="counters">40</span>
                         <p>années d'éxpérience</p>
                     </div>
 
@@ -171,7 +174,7 @@
                                 <div class="icon"><a href=""><i class="fas fa-envelope-open-text"></i></a></div>
                                 <h4 class="title"><a href="">Étape 3</a></h4>
                                 <p class="description">Envoyez un mail avec le formulaire de contact afin de commandez les
-                                    variétés que vous avez séléctionnées au préalable.</p>
+                                    variétés que vous avez séléctionnés au préalable.</p>
                             </div>
                         </div>
                     </div>
@@ -194,7 +197,7 @@
             </div>
         </section>
 
-        <section id="notre_equipe">
+        {{-- <section id="notre_equipe">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <h3 class="section-title">Notre Équipe</h3>
@@ -234,14 +237,13 @@
                 </div>
 
             </div>
-        </section>
+        </section> --}}
 
         <section id="nous_contacter">
             <div class="container">
                 <div class="section-header">
                     <h3 class="section-title">Contact</h3>
-                    <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                        accusantium doloremque</p>
+                    <p class="section-description">Formulaire de contact, afin de prendre contact par mail.</p>
                 </div>
             </div>
             @if (Session::has('success'))
@@ -271,7 +273,7 @@
                                                     <input type="text" class="form-control" name="name"
                                                         id="floatingInputName" placeholder="Nom Prénom"
                                                         value="{{ old('name') }}" required>
-                                                    <label for="floatingInputName">Nom Prénom</label>
+                                                    <label for="floatingInputName">Nom Prénom *</label>
                                                     @if ($errors->has('name'))
                                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                                     @endif
@@ -282,7 +284,7 @@
                                                             <input type="email" class="form-control" name="email"
                                                                 id="floatingInputEmail" value="{{ old('email') }}"
                                                                 placeholder="name@example.com">
-                                                            <label for="floatingInputEmail">Adresse Mail</label>
+                                                            <label for="floatingInputEmail">Adresse Mail *</label>
                                                         </div>
                                                         @if ($errors->has('email'))
                                                             <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -294,7 +296,7 @@
                                                             <input type="text" class="form-control"
                                                                 value="{{ old('phone') }}" id="floatingPhone"
                                                                 name="phone" placeholder="Téléphone">
-                                                            <label for="floatingPhone">Téléphone</label>
+                                                            <label for="floatingPhone">Téléphone *</label>
                                                         </div>
                                                         @if ($errors->has('phone'))
                                                             <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -305,7 +307,7 @@
                                                     <input type="text" class="form-control"
                                                         value="{{ old('subject') }}" id="floatingSujet" name="subject"
                                                         placeholder="Sujet">
-                                                    <label for="floatingSujet">Sujet</label>
+                                                    <label for="floatingSujet">Sujet *</label>
                                                     @if ($errors->has('subject'))
                                                         <span class="text-danger">{{ $errors->first('subject') }}</span>
                                                     @endif
@@ -313,7 +315,7 @@
                                                 <div class="form-floating mb-3">
                                                     <textarea class="form-control {{ $errors->has('message') ? 'error' : '' }}" placeholder="Ecrire son message"
                                                         id="floatingTextarea2" name="message" style="height: 100px">{{ old('message') }}</textarea>
-                                                    <label for="floatingTextarea2">Message</label>
+                                                    <label for="floatingTextarea2">Message *</label>
                                                     @if ($errors->has('message'))
                                                         <span class="text-danger">{{ $errors->first('message') }}</span>
                                                     @endif
@@ -336,7 +338,11 @@
                                         <span class="fa fa-map-marker fa-3x"></span>
                                     </div>
                                     <div class="text">
-                                        <p><span>Adresse:</span> Liffré</p>
+                                        <p><span>Adresse:</span><br>
+                                            <strong>74 Le Verger Beaucé,<br>
+                                            35520, <br>
+                                            Melesse</strong>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -346,7 +352,7 @@
                                         <span class="fa fa-phone fa-3x"></span>
                                     </div>
                                     <div class="text">
-                                        <p><span>Phone:</span> <a href="tel://1234567920">+33 7 82 84 85 86</a></p>
+                                        <p><span>Téléhone:</span> <a href="tel://+33 6 79 03 91 04">+33 6 79 03 91 04</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -356,7 +362,7 @@
                                         <span class="fas fa-envelope fa-3x"></span>
                                     </div>
                                     <div class="text">
-                                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">contact@email.com</a></p>
+                                        <p><span>Email:</span> <a href="mailto:lesrosesadam@gmail.com">lesrosesadam@gmail.com</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -371,33 +377,30 @@
         var nav = document.querySelector('nav');
         var navL = document.querySelector('#test');
         var navL2 = document.querySelector('#test2');
-        var navL3 = document.querySelector('#test3');
         var navL4 = document.querySelector('#test4');
         var navL5 = document.querySelector('#test5');
         var navL6 = document.querySelector('#test6');
         var navL7 = document.querySelector('#test7');
-
+    
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 100) {
                 nav.classList.add('bg-dark', 'shadow');
                 navL.classList.add('text-light');
                 navL2.classList.add('text-light');
-                navL3.classList.add('text-light');
                 navL4.classList.add('text-light');
                 navL5.classList.add('text-light');
                 navL6.classList.add('text-light');
                 navL7.classList.add('text-light');
-
+    
             } else {
                 nav.classList.remove('bg-dark', 'shadow');
                 navL.classList.remove('text-light');
                 navL2.classList.remove('text-light');
-                navL3.classList.remove('text-light');
                 navL4.classList.remove('text-light');
                 navL5.classList.remove('text-light');
                 navL6.classList.remove('text-light');
                 navL7.classList.remove('text-light');
-
+    
             }
         });
     </script>
